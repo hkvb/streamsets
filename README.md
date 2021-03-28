@@ -4,7 +4,7 @@ The Streamsets image library.
 
 ## hkvb/streamsets
 
-Simple library image also implementing simple stack.
+Simple library image, and node implementing simple stack.
 
 ## hkvb/streamsets/base
 
@@ -12,7 +12,7 @@ External build of streamsets adding Kafka and ElasticSearch libraries
 
 ## hkvb/streamsets/traefik
 
-Simple library image.
+Streamsets datacollector mounted behind Traefik.
 
 ## Version
 
