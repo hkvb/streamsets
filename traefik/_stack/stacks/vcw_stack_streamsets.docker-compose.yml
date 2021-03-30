@@ -19,11 +19,11 @@ services:
           memory: '${VCW_STACK_STREAMSETS_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}'
 
       labels: [traefik.enable=true,traefik.docker.network=${VCW_STACK_GLOBAL_NETWORKGLOBAL}_overlay,
-      "traefik.http.middlewares.${VCW_STACK_GLOBAL_STACKPREFIX}_streamsets.stripprefix.prefixes=/${VCW_STACK_GLOBAL_URLPREFIX}/streamsets,/${VCW_STACK_GLOBAL_URLPREFIX}/streamsets/",
+      "traefik.http.middlewares.${VCW_STACK_GLOBAL_STACKPREFIX}_streamsets.stripprefix.prefixes=/${VCW_STACK_GLOBAL_URLPREFIX},/${VCW_STACK_GLOBAL_URLPREFIX}/",
       traefik.http.services.${VCW_STACK_GLOBAL_STACKPREFIX}_streamsets.loadbalancer.server.port=18630,
       traefik.http.routers.${VCW_STACK_GLOBAL_STACKPREFIX}_streamsets.middlewares=${VCW_STACK_GLOBAL_STACKPREFIX}_streamsets@docker,
       traefik.http.routers.${VCW_STACK_GLOBAL_STACKPREFIX}_streamsets.entrypoints=infometis,
-      traefik.http.routers.${VCW_STACK_GLOBAL_STACKPREFIX}_streamsets.rule=PathPrefix("/${VCW_STACK_GLOBAL_URLPREFIX}/streamsets")]
+      traefik.http.routers.${VCW_STACK_GLOBAL_STACKPREFIX}_streamsets.rule=PathPrefix("/${VCW_STACK_GLOBAL_URLPREFIX}")]
 ${VCW_STACK_STREAMSETS_COMPOSE_EXTENSIONS}
 # END SERVICE hkvb/streamsets/traefik
 

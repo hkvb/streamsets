@@ -3,8 +3,8 @@
 # START CONFIGURATION
 DOLLAR='$'
 export VCW_STACK_GLOBAL_STACKS="streamsets.base"
-export VCW_STACK_GLOBAL_STACKNAMES="vcw_stack_streamsets"
-export VCW_STACK_GLOBAL_BOOTSTACKS="vcw_stack_streamsets"
+export VCW_STACK_GLOBAL_STACKNAMES="streamsets"
+export VCW_STACK_GLOBAL_BOOTSTACKS="streamsets"
 export VCW_STACK_GLOBAL_RUNSTACKS=""
 export VCW_STACK_GLOBAL_VOLUME_LIST="${DOLLAR}{VCW_STACK_GLOBAL_STACKPREFIX}_volume"
 export VCW_STACK_GLOBAL_VOLUME_INITIALISED="${DOLLAR}{VCW_STACK_GLOBAL_STACKPREFIX}_volume:/data"
@@ -38,11 +38,11 @@ export VCW_STACK_STREAMSETS_NETWORKS="${DOLLAR}{VCW_STACK_GLOBAL_NETWORKGLOBAL}_
 export VCW_STACK_STREAMSETS_DEPLOY_MODE="replicated"
 export VCW_STACK_STREAMSETS_COMPOSE_EXTENSIONS="
       labels: [traefik.enable=true,traefik.docker.network=${DOLLAR}{VCW_STACK_GLOBAL_NETWORKGLOBAL}_overlay,
-      \"traefik.http.middlewares.${DOLLAR}{VCW_STACK_GLOBAL_STACKPREFIX}_streamsets.stripprefix.prefixes=/${DOLLAR}{VCW_STACK_GLOBAL_URLPREFIX}/streamsets,/${DOLLAR}{VCW_STACK_GLOBAL_URLPREFIX}/streamsets/\",
+      \"traefik.http.middlewares.${DOLLAR}{VCW_STACK_GLOBAL_STACKPREFIX}_streamsets.stripprefix.prefixes=/${DOLLAR}{VCW_STACK_GLOBAL_URLPREFIX},/${DOLLAR}{VCW_STACK_GLOBAL_URLPREFIX}/\",
       traefik.http.services.${DOLLAR}{VCW_STACK_GLOBAL_STACKPREFIX}_streamsets.loadbalancer.server.port=18630,
       traefik.http.routers.${DOLLAR}{VCW_STACK_GLOBAL_STACKPREFIX}_streamsets.middlewares=${DOLLAR}{VCW_STACK_GLOBAL_STACKPREFIX}_streamsets@docker,
       traefik.http.routers.${DOLLAR}{VCW_STACK_GLOBAL_STACKPREFIX}_streamsets.entrypoints=infometis,
-      traefik.http.routers.${DOLLAR}{VCW_STACK_GLOBAL_STACKPREFIX}_streamsets.rule=PathPrefix(\"/${DOLLAR}{VCW_STACK_GLOBAL_URLPREFIX}/streamsets\")]
+      traefik.http.routers.${DOLLAR}{VCW_STACK_GLOBAL_STACKPREFIX}_streamsets.rule=PathPrefix(\"/${DOLLAR}{VCW_STACK_GLOBAL_URLPREFIX}\")]
 ${DOLLAR}{VCW_STACK_STREAMSETS_COMPOSE_EXTENSIONS}"
 export VCW_STACK_GLOBAL_VOLUMES="${DOLLAR}{VCW_STACK_GLOBAL_STACKPREFIX}_volume: { external: true }"
 export VCW_STACK_GLOBAL_NETWORKS="${DOLLAR}{VCW_STACK_GLOBAL_NETWORKGLOBAL}_overlay: { external: true }, ${DOLLAR}{VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay: { external: true }"
