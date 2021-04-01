@@ -1,17 +1,15 @@
 ARG  VCW_TAG=3.16.0
-FROM streamsets/datacollector-libs:streamsets-datacollector-elasticsearch_5-lib-${VCW_TAG} AS elastic
-FROM streamsets/datacollector-libs:streamsets-datacollector-apache-kafka_2_0-lib-${VCW_TAG} AS kafka
-FROM streamsets/datacollector:${VCW_TAG}
+FROM ${VCW_REGISTRY}streamsets/datacollector-libs:streamsets-datacollector-elasticsearch_5-lib-${VCW_TAG} AS elastic
+FROM ${VCW_REGISTRY}streamsets/datacollector-libs:streamsets-datacollector-apache-kafka_2_0-lib-${VCW_TAG} AS kafka
+FROM ${VCW_REGISTRY}streamsets/datacollector:${VCW_TAG}
 
 COPY --from=elastic /opt/streamsets-datacollector-3.16.0/streamsets-libs/streamsets-datacollector-elasticsearch_5-lib /opt/streamsets-datacollector-3.16.0/streamsets-libs/streamsets-datacollector-elasticsearch_5-lib
 COPY --from=kafka /opt/streamsets-datacollector-3.16.0/streamsets-libs/streamsets-datacollector-apache-kafka_2_0-lib /opt/streamsets-datacollector-3.16.0/streamsets-libs/streamsets-datacollector-apache-kafka_2_0-lib
 
 LABEL co.vcweb.schema-version="1.0" \
-      co.vcweb.label="hkvb/streamsets/external - External Build" \
+      co.vcweb.label="${VCW_REALM}/streamsets/external - External Build" \
       co.vcweb.description="The Official Streamsets Datacollector image with elasticsearch and kafka libraries installed." \
-      co.vcweb.realm="hkvb" \
-      co.vcweb.library="streamsets" \
-      co.vcweb.image="external" \
-      co.vcweb.flavor="" \
+      co.vcweb.realm="${VCW_REALM}" \
+      co.vcweb.image="streamsets.external" \
       co.vcweb.tag="3.16.0" \
-      co.vcweb.maintainer="vcw@vcweb.co"
+      co.vcweb.maintainer="infometis@vcweb.co"
