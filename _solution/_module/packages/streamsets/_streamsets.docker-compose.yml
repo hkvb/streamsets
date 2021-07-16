@@ -1,0 +1,25 @@
+---
+version: '3'
+services:
+
+# START SERVICE hkvb/streamsets
+  streamsets:
+    image: ${VCW_REGISTRY}hkvb/streamsets.base:3.16.0
+    environment: ['SDC_JAVA_OPTS=-Xmx${STREAMSETS_DEPLOY_RESOURCES_RESERVATIONS_MEMORY} -Xms${STREAMSETS_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}', 'SDC_CONF_HTTP_BINDHOST=0.0.0.0', 'SDC_CONF_HTTP_ENABLE_FORWARDED_REQUESTS=true', 'SDC_CONF_HTTP_AUTHENTICATION=none', 'SDC_CONF_BUNDLE_UPLOAD_ENABLED=false']
+    command: []
+    volumes: ['${VCW_STACK_GLOBAL_STACKPREFIX}_volume:/data']
+    ports: [${STREAMSETS_MODULE_STREAMSETS_PORT}:18630]
+    networks: [${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay]
+    deploy:
+      mode: replicated
+      resources:
+        limits:
+          memory: '${STREAMSETS_DEPLOY_RESOURCES_LIMITS_MEMORY}'
+        reservations:
+          memory: '${STREAMSETS_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}'
+${STREAMSETS_COMPOSE_EXTENSIONS}
+# END SERVICE hkvb/streamsets
+
+networks: {${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay: { external: true }}
+volumes: {${VCW_STACK_GLOBAL_STACKPREFIX}_volume: { external: true }}
+${VCW_STACK_GLOBAL_COMPOSE_EXTENSIONS}
